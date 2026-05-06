@@ -65,3 +65,23 @@ That email will be assigned `role = admin`.
 - Add Stripe (card) or invoicing/terms
 - Add shipment tracking + status updates
 - Add clinic user management (multiple users per clinic)
+
+
+## Premium catalog upgrade
+Run `supabase/premium-upgrade.sql` in Supabase SQL Editor to add:
+- `image_url`
+- `inventory_status`
+
+Then redeploy on Vercel after replacing your repo files with this upgraded version.
+
+
+## Auto-link registration upgrade
+This upgrade removes the need to manually link Auth users to clinics.
+
+### Steps
+1. Run `supabase/auto-link-registration.sql` in Supabase SQL Editor.
+2. Replace repo files with this upgrade and redeploy in Vercel.
+3. New clinic signups automatically create:
+   - a `clinics` row with status `pending`
+   - a `profiles` row linked to that clinic
+4. The admin email `jude@lmgmedicine.com` automatically gets role `admin`.
